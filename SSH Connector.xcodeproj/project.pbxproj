@@ -11,7 +11,22 @@
 		26202B9E1D9DA9E900270519 /* ConnectionHelperURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26202B9C1D9DA9E100270519 /* ConnectionHelperURL.swift */; };
 		26202BA11D9DAAF500270519 /* connect.sh in Resources */ = {isa = PBXBuildFile; fileRef = 26202B981D9DA9E100270519 /* connect.sh */; };
 		26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26202B951D9DA9E100270519 /* Assets.xcassets */; };
+		26202BAC1D9DAF7E00270519 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26202BAB1D9DAF7E00270519 /* main.swift */; };
+		26202BB11D9DBCAD00270519 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26202BB01D9DBCAD00270519 /* Package.swift */; };
+		26202BB41D9DBDD600270519 /* passex in Resources */ = {isa = PBXBuildFile; fileRef = 26202BB31D9DBDD600270519 /* passex */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		26202BA71D9DAF7E00270519 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		26202B811D9DA35E00270519 /* SSH Connector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SSH Connector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,10 +38,21 @@
 		26202B9C1D9DA9E100270519 /* ConnectionHelperURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHelperURL.swift; sourceTree = "<group>"; };
 		26202B9F1D9DAA9B00270519 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		26202BA01D9DAA9B00270519 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		26202BA91D9DAF7E00270519 /* passex */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = passex; sourceTree = BUILT_PRODUCTS_DIR; };
+		26202BAB1D9DAF7E00270519 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		26202BB01D9DBCAD00270519 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		26202BB31D9DBDD600270519 /* passex */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = passex; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		26202B7E1D9DA35E00270519 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26202BA61D9DAF7E00270519 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +67,7 @@
 			children = (
 				26202B9A1D9DA9E100270519 /* Sources */,
 				26202B941D9DA9E100270519 /* Resources */,
+				26202BAA1D9DAF7E00270519 /* passex */,
 				26202B821D9DA35E00270519 /* Products */,
 				26202B9F1D9DAA9B00270519 /* LICENSE */,
 				26202BA01D9DAA9B00270519 /* README.md */,
@@ -51,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				26202B811D9DA35E00270519 /* SSH Connector.app */,
+				26202BA91D9DAF7E00270519 /* passex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +89,7 @@
 				26202B951D9DA9E100270519 /* Assets.xcassets */,
 				26202B961D9DA9E100270519 /* MainMenu.xib */,
 				26202B981D9DA9E100270519 /* connect.sh */,
+				26202BB31D9DBDD600270519 /* passex */,
 				26202B991D9DA9E100270519 /* Info.plist */,
 			);
 			path = Resources;
@@ -75,6 +104,15 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		26202BAA1D9DAF7E00270519 /* passex */ = {
+			isa = PBXGroup;
+			children = (
+				26202BAB1D9DAF7E00270519 /* main.swift */,
+				26202BB01D9DBCAD00270519 /* Package.swift */,
+			);
+			path = passex;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -84,6 +122,7 @@
 			buildPhases = (
 				26202B7D1D9DA35E00270519 /* Sources */,
 				26202B7E1D9DA35E00270519 /* Frameworks */,
+				26202BB21D9DBD3900270519 /* Build passex */,
 				26202B7F1D9DA35E00270519 /* Resources */,
 			);
 			buildRules = (
@@ -94,6 +133,23 @@
 			productName = "SSH Connector";
 			productReference = 26202B811D9DA35E00270519 /* SSH Connector.app */;
 			productType = "com.apple.product-type.application";
+		};
+		26202BA81D9DAF7E00270519 /* passex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 26202BAD1D9DAF7E00270519 /* Build configuration list for PBXNativeTarget "passex" */;
+			buildPhases = (
+				26202BA51D9DAF7E00270519 /* Sources */,
+				26202BA61D9DAF7E00270519 /* Frameworks */,
+				26202BA71D9DAF7E00270519 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = passex;
+			productName = passex;
+			productReference = 26202BA91D9DAF7E00270519 /* passex */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -108,6 +164,11 @@
 					26202B801D9DA35E00270519 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Manual;
+					};
+					26202BA81D9DAF7E00270519 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 772G83MDGQ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -125,6 +186,7 @@
 			projectRoot = "";
 			targets = (
 				26202B801D9DA35E00270519 /* SSH Connector */,
+				26202BA81D9DAF7E00270519 /* passex */,
 			);
 		};
 /* End PBXProject section */
@@ -136,10 +198,28 @@
 			files = (
 				26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */,
 				26202BA11D9DAAF500270519 /* connect.sh in Resources */,
+				26202BB41D9DBDD600270519 /* passex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26202BB21D9DBD3900270519 /* Build passex */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build passex";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd passex\nswift build\ncp .build/debug/passex ../Resources";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		26202B7D1D9DA35E00270519 /* Sources */ = {
@@ -148,6 +228,15 @@
 			files = (
 				26202B9D1D9DA9E900270519 /* AppDelegate.swift in Sources */,
 				26202B9E1D9DA9E900270519 /* ConnectionHelperURL.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26202BA51D9DAF7E00270519 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26202BB11D9DBCAD00270519 /* Package.swift in Sources */,
+				26202BAC1D9DAF7E00270519 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +372,26 @@
 			};
 			name = Release;
 		};
+		26202BAE1D9DAF7E00270519 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 772G83MDGQ;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		26202BAF1D9DAF7E00270519 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 772G83MDGQ;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -300,6 +409,14 @@
 			buildConfigurations = (
 				26202B8F1D9DA35F00270519 /* Debug */,
 				26202B901D9DA35F00270519 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		26202BAD1D9DAF7E00270519 /* Build configuration list for PBXNativeTarget "passex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26202BAE1D9DAF7E00270519 /* Debug */,
+				26202BAF1D9DAF7E00270519 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
