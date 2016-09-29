@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>SSH Connection URL</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>sshconnect</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2016 Hejki. All rights reserved.</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>SSHCE_TERMINAL_CONFIGURATIONS</key>
+	<array>
+		<dict>
+			<key>bundleId</key>
+			<string>com.googlecode.iterm2</string>
+			<key>script</key>
+			<string>tell application id "com.googlecode.iterm2"
+	set c to "%@"
+	
+	if current window is missing value then
+		create window with default profile command c
+		activate
+		return
+	end if
+	
+	tell current session of current window
+		if is processing then
+			write text c
+			activate
+			return
+		end if
+	end tell
+	
+	tell current window
+		create tab with default profile command c
+	end tell
+	activate
+end tell</string>
+		</dict>
+		<dict>
+			<key>bundleId</key>
+			<string>com.apple.Terminal</string>
+			<key>script</key>
+			<string>tell application id "com.apple.Terminal"
+	set windowExist to exists window 1 # starting app or some window opened
+	set command to "%@"
+	
+	# operation in progres in window 1 or application just started
+	if windowExist and busy of window 1 then
+		delay 2
+		if busy of window 1 then
+			do script command
+			activate
+			return
+		end if
+	end if
+	
+	if windowExist and not busy of window 1 then
+		do script command in window 1
+	else
+		do script command
+	end if
+	activate
+end tell</string>
+		</dict>
+	</array>
+</dict>
+</plist>
