@@ -10,7 +10,7 @@ if {$argc != 2} {
     exit 1
 }
 
-set getPassPath "[file dirname $::argv0]/getpass"
+set getPassPath "[file dirname $::argv0]/../PlugIns/getpass.bundle/Contents/MacOS/getpass"
 set sshPass [exec $getPassPath $sshAccount]
 #log_user 0 # turns off the output to STDOUT (printing the output to the screen)
 

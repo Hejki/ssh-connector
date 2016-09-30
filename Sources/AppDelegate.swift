@@ -121,16 +121,19 @@ private extension AppDelegate {
     }
     
     func checkAppPlacement() {
-        guard let appURL = NSRunningApplication.current().bundleURL,
-            !appURL.path.hasPrefix("/Applications") else {
-                return
+        guard let appURL = NSRunningApplication.current().bundleURL else {
+            return
         }
         
         let alert = NSAlert()
         
         alert.alertStyle = .informational
-        alert.messageText = "SSH Connector cannot work properly if is not placed in /Applications directory."
-        alert.informativeText = "Please move it to /Applications directory."
+        if appURL.path.hasPrefix("/Applications") {
+            alert.messageText = "SSH Connector is properly set."
+        } else {
+            alert.messageText = "SSH Connector cannot work properly if is not placed in /Applications directory."
+            alert.informativeText = "Please move it to /Applications directory."
+        }
         
         alert.runModal()
         NSApp.terminate(self)
