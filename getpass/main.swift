@@ -40,7 +40,7 @@ if argv.count != 2 {
 let query: [NSString: AnyObject] = [
     kSecClass: kSecClassGenericPassword,
     kSecAttrAccount: argv[1] as NSString,
-    kSecAttrService: "org.hejki.osx.sshce" as NSString,
+    kSecAttrService: "org.hejki.osx.sshce.connector" as NSString,
     kSecReturnData: kCFBooleanTrue,
 ]
 

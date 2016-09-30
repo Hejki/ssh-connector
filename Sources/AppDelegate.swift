@@ -23,7 +23,6 @@
 //
 
 import Cocoa
-//import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -37,7 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                      andEventID: AEEventID(kAEGetURL))
         LSSetDefaultHandlerForURLScheme("sshconnect" as CFString, Bundle.main.bundleIdentifier! as CFString)
         
-//        var checkUpdate = true
         if let appURL = NSRunningApplication.current().bundleURL {
             let fileManager = FileManager.default
             let appName = NSRunningApplication.current().localizedName ?? "SSH Connector"
@@ -48,15 +46,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             appSupportURL.appendPathExtension("app")
             
             if !(fileManager.isExecutableFile(atPath: appSupportURL.path)) {
-//                checkUpdate = false
                 try? fileManager.createDirectory(at: appSupportURL.deletingLastPathComponent(), withIntermediateDirectories: true)
                 try? fileManager.moveItem(at: appURL, to: appSupportURL)
+                LSRegisterURL(appSupportURL as CFURL, true)
+                NSApp.terminate(self)
             }
         }
-        
-//        if checkUpdate {
-//            SUUpdater.shared().checkForUpdates(self)
-//        }
     }
     
     /// Handle URL passed to application and open ssh connection

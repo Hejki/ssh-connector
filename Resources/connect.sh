@@ -10,8 +10,8 @@ if {$argc != 2} {
     exit 1
 }
 
-set passexPath "[file dirname $::argv0]/passex"
-set sshPass [exec $passexPath $sshAccount]
+set getPassPath "[file dirname $::argv0]/getpass"
+set sshPass [exec $getPassPath $sshAccount]
 #log_user 0 # turns off the output to STDOUT (printing the output to the screen)
 
 eval spawn ssh -q -o StrictHostKeyChecking=no -o PubkeyAuthentication=no $sshAlias
