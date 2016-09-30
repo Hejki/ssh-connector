@@ -36,21 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                      andEventID: AEEventID(kAEGetURL))
         LSSetDefaultHandlerForURLScheme("sshconnect" as CFString, Bundle.main.bundleIdentifier! as CFString)
         
-        if let appURL = NSRunningApplication.current().bundleURL {
-            let fileManager = FileManager.default
-            let appName = NSRunningApplication.current().localizedName ?? "SSH Connector"
-            var appSupportURL = try! fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            
-            appSupportURL.appendPathComponent(appName, isDirectory: true)
-            appSupportURL.appendPathComponent(appName, isDirectory: false)
-            appSupportURL.appendPathExtension("app")
-            
-            if !(fileManager.isExecutableFile(atPath: appSupportURL.path)) {
-                try? fileManager.createDirectory(at: appSupportURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-                try? fileManager.moveItem(at: appURL, to: appSupportURL)
-                LSRegisterURL(appSupportURL as CFURL, true)
-                NSApp.terminate(self)
-            }
+        if ProcessInfo.processInfo.environment["placementAlert"] != "false" {
+            checkAppPlacement()
         }
     }
     
@@ -131,6 +118,22 @@ private extension AppDelegate {
                 NSWorkspace.shared().open(feedbackURL)
             }
         }
+    }
+    
+    func checkAppPlacement() {
+        guard let appURL = NSRunningApplication.current().bundleURL,
+            !appURL.path.hasPrefix("/Applications") else {
+                return
+        }
+        
+        let alert = NSAlert()
+        
+        alert.alertStyle = .informational
+        alert.messageText = "SSH Connector cannot work properly if is not placed in /Applications directory."
+        alert.informativeText = "Please move it to /Applications directory."
+        
+        alert.runModal()
+        NSApp.terminate(self)
     }
 }
 
