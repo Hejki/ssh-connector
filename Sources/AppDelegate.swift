@@ -35,10 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                      forEventClass: AEEventClass(kInternetEventClass),
                                                      andEventID: AEEventID(kAEGetURL))
         LSSetDefaultHandlerForURLScheme("sshconnect" as CFString, Bundle.main.bundleIdentifier! as CFString)
-        
-        if ProcessInfo.processInfo.environment["placementAlert"] != "false" {
-            checkAppPlacement()
-        }
     }
     
     /// Handle URL passed to application and open ssh connection
@@ -118,25 +114,6 @@ private extension AppDelegate {
                 NSWorkspace.shared().open(feedbackURL)
             }
         }
-    }
-    
-    func checkAppPlacement() {
-        guard let appURL = NSRunningApplication.current().bundleURL else {
-            return
-        }
-        
-        let alert = NSAlert()
-        
-        alert.alertStyle = .informational
-        if appURL.path.hasPrefix("/Applications") {
-            alert.messageText = "SSH Connector is properly set."
-        } else {
-            alert.messageText = "SSH Connector cannot work properly if is not placed in /Applications directory."
-            alert.informativeText = "Please move it to /Applications directory."
-        }
-        
-        alert.runModal()
-        NSApp.terminate(self)
     }
 }
 
