@@ -12,20 +12,10 @@
 		26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26202B951D9DA9E100270519 /* Assets.xcassets */; };
 		26202BB51D9DBEEF00270519 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26202B961D9DA9E100270519 /* MainMenu.xib */; };
 		26C3B3571D9E98B000E8A294 /* connect.sh in Resources */ = {isa = PBXBuildFile; fileRef = 26202B981D9DA9E100270519 /* connect.sh */; };
-		26D967501D9EA1F3009A78CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D9674F1D9EA1F3009A78CF /* main.swift */; };
-		26D967511D9EA222009A78CF /* getpass.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 26D967481D9EA1C5009A78CF /* getpass.bundle */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		26D967651D9F0EC6009A78CF /* getpass in Replace executable */ = {isa = PBXBuildFile; fileRef = 26D967641D9F0EC0009A78CF /* getpass */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		26D9678B1DA065B8009A78CF /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26D967891DA0659A009A78CF /* Sparkle.framework */; };
+		26D9678C1DA065B8009A78CF /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 26D967891DA0659A009A78CF /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		26D9678F1DA069B4009A78CF /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 26D9678E1DA069B4009A78CF /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		26D967521D9EA222009A78CF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 26202B791D9DA35E00270519 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 26D967471D9EA1C5009A78CF;
-			remoteInfo = getpass;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		26D967541D9EA222009A78CF /* Embed PlugIns */ = {
@@ -34,20 +24,19 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				26D967511D9EA222009A78CF /* getpass.bundle in Embed PlugIns */,
 			);
 			name = "Embed PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26D967631D9F0E9F009A78CF /* Replace executable */ = {
+		26D9678D1DA065B8009A78CF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 6;
+			dstSubfolderSpec = 10;
 			files = (
-				26D967651D9F0EC6009A78CF /* getpass in Replace executable */,
+				26D9678C1DA065B8009A78CF /* Sparkle.framework in Embed Frameworks */,
 			);
-			name = "Replace executable";
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -62,10 +51,8 @@
 		26202B9C1D9DA9E100270519 /* ConnectionHelperURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHelperURL.swift; sourceTree = "<group>"; };
 		26202B9F1D9DAA9B00270519 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		26202BA01D9DAA9B00270519 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		26D967481D9EA1C5009A78CF /* getpass.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = getpass.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
-		26D9674A1D9EA1C5009A78CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		26D9674F1D9EA1F3009A78CF /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		26D967641D9F0EC0009A78CF /* getpass */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = getpass; sourceTree = "<group>"; };
+		26D967891DA0659A009A78CF /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
+		26D9678E1DA069B4009A78CF /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,13 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		26D967451D9EA1C5009A78CF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				26D9678B1DA065B8009A78CF /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,10 +72,10 @@
 			children = (
 				26202B9A1D9DA9E100270519 /* Sources */,
 				26202B941D9DA9E100270519 /* Resources */,
-				26D967491D9EA1C5009A78CF /* getpass */,
 				26202B821D9DA35E00270519 /* Products */,
 				26202B9F1D9DAA9B00270519 /* LICENSE */,
 				26202BA01D9DAA9B00270519 /* README.md */,
+				26D967861DA064C6009A78CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				26202B811D9DA35E00270519 /* SSH Connector.app */,
-				26D967481D9EA1C5009A78CF /* getpass.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +94,7 @@
 				26202B961D9DA9E100270519 /* MainMenu.xib */,
 				26202B981D9DA9E100270519 /* connect.sh */,
 				26202B991D9DA9E100270519 /* Info.plist */,
+				26D9678E1DA069B4009A78CF /* dsa_pub.pem */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -127,14 +108,12 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		26D967491D9EA1C5009A78CF /* getpass */ = {
+		26D967861DA064C6009A78CF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				26D9674F1D9EA1F3009A78CF /* main.swift */,
-				26D9674A1D9EA1C5009A78CF /* Info.plist */,
-				26D967641D9F0EC0009A78CF /* getpass */,
+				26D967891DA0659A009A78CF /* Sparkle.framework */,
 			);
-			path = getpass;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,35 +128,16 @@
 				26202BB21D9DBD3900270519 /* Build getpass */,
 				26202B7F1D9DA35E00270519 /* Resources */,
 				26D967541D9EA222009A78CF /* Embed PlugIns */,
+				26D9678D1DA065B8009A78CF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				26D967531D9EA222009A78CF /* PBXTargetDependency */,
 			);
 			name = "SSH Connector";
 			productName = "SSH Connector";
 			productReference = 26202B811D9DA35E00270519 /* SSH Connector.app */;
 			productType = "com.apple.product-type.application";
-		};
-		26D967471D9EA1C5009A78CF /* getpass */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 26D9674B1D9EA1C5009A78CF /* Build configuration list for PBXNativeTarget "getpass" */;
-			buildPhases = (
-				26D967441D9EA1C5009A78CF /* Sources */,
-				26D967451D9EA1C5009A78CF /* Frameworks */,
-				26D967461D9EA1C5009A78CF /* Resources */,
-				26D967621D9F0E63009A78CF /* Build getpass executable */,
-				26D967631D9F0E9F009A78CF /* Replace executable */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = getpass;
-			productName = getpass;
-			productReference = 26D967481D9EA1C5009A78CF /* getpass.bundle */;
-			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -191,12 +151,8 @@
 				TargetAttributes = {
 					26202B801D9DA35E00270519 = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Manual;
-					};
-					26D967471D9EA1C5009A78CF = {
-						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = 772G83MDGQ;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -214,7 +170,6 @@
 			projectRoot = "";
 			targets = (
 				26202B801D9DA35E00270519 /* SSH Connector */,
-				26D967471D9EA1C5009A78CF /* getpass */,
 			);
 		};
 /* End PBXProject section */
@@ -225,15 +180,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */,
+				26D9678F1DA069B4009A78CF /* dsa_pub.pem in Resources */,
 				26C3B3571D9E98B000E8A294 /* connect.sh in Resources */,
 				26202BB51D9DBEEF00270519 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		26D967461D9EA1C5009A78CF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,20 +203,6 @@
 			shellPath = /bin/sh;
 			shellScript = "#cd getpass\n#swift build -c release\n#cp .build/release/getpass ../Resources\n#codesign --force --verify --verbose --sign \"Developer ID Application: Petr Hejkal (772G83MDGQ)\" ../Resources/getpass";
 		};
-		26D967621D9F0E63009A78CF /* Build getpass executable */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build getpass executable";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd getpass\nswift build -c release\ncp .build/release/getpass .";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -280,23 +215,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26D967441D9EA1C5009A78CF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				26D967501D9EA1F3009A78CF /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		26D967531D9EA222009A78CF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 26D967471D9EA1C5009A78CF /* getpass */;
-			targetProxy = 26D967521D9EA222009A78CF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		26202B961D9DA9E100270519 /* MainMenu.xib */ = {
@@ -403,11 +322,16 @@
 		26202B8F1D9DA35F00270519 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 772G83MDGQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = org.hejki.osx.sshce.connector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -418,55 +342,20 @@
 		26202B901D9DA35F00270519 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 772G83MDGQ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = org.hejki.osx.sshce.connector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		26D9674C1D9EA1C5009A78CF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_MODULES = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
-				INFOPLIST_FILE = getpass/Info.plist;
-				MACH_O_TYPE = mh_bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = org.hejki.osx.sshce.connector.getpass;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = all;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
-				WRAPPER_EXTENSION = bundle;
-			};
-			name = Debug;
-		};
-		26D9674D1D9EA1C5009A78CF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_MODULES = YES;
-				INFOPLIST_FILE = getpass/Info.plist;
-				MACH_O_TYPE = mh_bundle;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = org.hejki.osx.sshce.connector.getpass;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = all;
-				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
-				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;
 		};
@@ -487,15 +376,6 @@
 			buildConfigurations = (
 				26202B8F1D9DA35F00270519 /* Debug */,
 				26202B901D9DA35F00270519 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		26D9674B1D9EA1C5009A78CF /* Build configuration list for PBXNativeTarget "getpass" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				26D9674C1D9EA1C5009A78CF /* Debug */,
-				26D9674D1D9EA1C5009A78CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

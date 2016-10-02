@@ -47,8 +47,8 @@
 			<key>bundleId</key>
 			<string>com.googlecode.iterm2</string>
 			<key>script</key>
-			<string>tell application id "com.googlecode.iterm2"
-	set c to "%@"
+			<string>tell application id &quot;com.googlecode.iterm2&quot;
+	set c to &quot;%@&quot;
 	
 	if current window is missing value then
 		create window with default profile command c
@@ -74,9 +74,9 @@ end tell</string>
 			<key>bundleId</key>
 			<string>com.apple.Terminal</string>
 			<key>script</key>
-			<string>tell application id "com.apple.Terminal"
+			<string>tell application id &quot;com.apple.Terminal&quot;
 	set windowExist to exists window 1 # starting app or some window opened
-	set command to "%@"
+	set command to &quot;%@&quot;
 	
 	# operation in progres in window 1 or application just started
 	if windowExist and busy of window 1 then
@@ -97,5 +97,17 @@ end tell</string>
 end tell</string>
 		</dict>
 	</array>
+	<key>SUAllowsAutomaticUpdates</key>
+	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://www.dropbox.com/s/el432iuc6cj5r3g/versions.xml?dl=1</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
+	<key>SUShowReleaseNotes</key>
+	<false/>
 </dict>
 </plist>

@@ -674,5 +674,6 @@
                 </menuItem>
             </items>
         </menu>
+        <customObject id="0oz-76-a5a" customClass="SUUpdater"/>
     </objects>
 </document>

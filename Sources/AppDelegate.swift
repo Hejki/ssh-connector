@@ -23,6 +23,7 @@
 //
 
 import Cocoa
+import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -31,14 +32,41 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /// Register URL handler, move application package to ApplicationSupport directory and run Sparkle updater
     func applicationWillFinishLaunching(_ notification: Notification) {
         NSAppleEventManager.shared().setEventHandler(self,
-                                                     andSelector: #selector(handleGetURLEvent(_:replyEvent:)),
+                                                     andSelector: #selector(handleAppleEvent(_:withReplyEvent:)),
                                                      forEventClass: AEEventClass(kInternetEventClass),
                                                      andEventID: AEEventID(kAEGetURL))
         LSSetDefaultHandlerForURLScheme("sshconnect" as CFString, Bundle.main.bundleIdentifier! as CFString)
     }
     
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        let appURL = NSRunningApplication.current().bundleURL!
+        let fileManager = FileManager.default
+        let appName = NSRunningApplication.current().localizedName ?? "SSH Connector"
+        var appTargetURL = try! fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        
+        appTargetURL.appendPathComponent(appName, isDirectory: true)
+        appTargetURL.appendPathComponent(appName, isDirectory: false)
+        appTargetURL.appendPathExtension("app")
+        
+        if appTargetURL != appURL {
+            do {
+                try fileManager.createDirectory(at: appTargetURL.deletingLastPathComponent(), withIntermediateDirectories: true)
+                
+                if fileManager.fileExists(atPath: appTargetURL.path) {
+                    let _ = try fileManager.replaceItem(at: appTargetURL, withItemAt: appURL, backupItemName: nil, options: [.usingNewMetadataOnly], resultingItemURL: nil)
+                } else {
+                    try fileManager.moveItem(at: appURL, to: appTargetURL)
+                }
+            } catch {
+                print("Cannot move item at '\(appURL)' to '\(appTargetURL)', error: \(error.localizedDescription)")
+            }
+        }
+        
+        checkLoginItems(appTargetURL)
+    }
+    
     /// Handle URL passed to application and open ssh connection
-    func handleGetURLEvent(_ event: NSAppleEventDescriptor?, replyEvent: NSAppleEventDescriptor?) {
+    func handleAppleEvent(_ event: NSAppleEventDescriptor?, withReplyEvent replyEvent: NSAppleEventDescriptor?) {
         if let eventDescriptor = event?.paramDescriptor(forKeyword: AEKeyword(keyDirectObject)),
             let urlString = eventDescriptor.stringValue,
             let url = ConnectionHelperURL(url: URL(string: urlString)) {
@@ -53,9 +81,20 @@ private extension AppDelegate {
     /// For connection with password executes connect.sh script
     /// For connection without password runs "ssh host_alias"
     func openConnection(to url: ConnectionHelperURL) {
-        let script = getScript(forBundleId: url.terminal)
-        let formattedScript: String
+        // If apple script not found then call ssh url
+        guard let script = getScript(forBundleId: url.terminal) else {
+            
+            if let sshURL = URL(string: "ssh://\(url.alias)") {
+                if let terminalBundleIdentifier = url.terminal {
+                    NSWorkspace.shared().open([sshURL], withAppBundleIdentifier: terminalBundleIdentifier, options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+                } else {
+                    NSWorkspace.shared().open(sshURL)
+                }
+            }
+            return
+        }
         
+        let formattedScript: String
         if let account = url.account {
             formattedScript = String(format: script, "\\\"\(connectScriptPath)\\\" \(url.alias) \(account)")
         } else {
@@ -68,18 +107,17 @@ private extension AppDelegate {
         if let errorDict = errorDict {
             sendAlert(info: errorDict, url: url)
         }
-        NSApp.terminate(self)
     }
     
-    /// Get Apple Script for specified terminal, if desired terminal not found uses default macOS Terminal.app
-    func getScript(forBundleId bundleId: String!) -> String {
+    /// Get Apple Script for specified terminal, if desired terminal not found returns nil
+    func getScript(forBundleId bundleId: String!) -> String? {
         if let configurations = Bundle.main.infoDictionary?[R.bundleKeyConfigs] as? [[String: String]],
             let config = configurations.first(where: { $0[R.bundleKeyId] == bundleId }),
             let script = config[R.bundleKeyScript] {
             return script
         }
         
-        return getScript(forBundleId: R.systemTerminalBundleId)
+        return nil
     }
     
     /// Show error alert to user with ability to send error to authors
@@ -115,14 +153,31 @@ private extension AppDelegate {
             }
         }
     }
+    
+    /// Add application to "Login Items" if not already there
+    func checkLoginItems(_ appURL: URL) {
+        if let loginItems = LSSharedFileListCreate(nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil) {
+            
+            let loginItemsArray = LSSharedFileListCopySnapshot(loginItems.takeRetainedValue(), nil).takeRetainedValue() as! [LSSharedFileListItem]
+            
+            for loginItem in loginItemsArray {
+                if let url = LSSharedFileListItemCopyResolvedURL(loginItem, 0, nil)?.takeRetainedValue() as? URL, url == appURL {
+                    return // App found in login items
+                }
+            }
+            
+            if let loginItems = LSSharedFileListCreate(nil, kLSSharedFileListSessionLoginItems.takeRetainedValue(), nil) {
+                
+                LSSharedFileListInsertItemURL(loginItems.takeRetainedValue(), loginItemsArray.last, nil, nil, appURL as CFURL, nil, nil)
+            }
+        }
+    }
 }
 
 private enum R {
     static let bundleKeyConfigs = "SSHCE_TERMINAL_CONFIGURATIONS"
     static let bundleKeyId = "bundleId"
     static let bundleKeyScript = "script"
-    
-    static let systemTerminalBundleId = "com.apple.Terminal"
     
     static func mailto(body: String) -> String {
         let body = body.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
