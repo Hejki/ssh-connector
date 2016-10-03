@@ -23,7 +23,6 @@
 //
 
 import Cocoa
-import Sparkle
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -58,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     try fileManager.moveItem(at: appURL, to: appTargetURL)
                 }
             } catch {
-                print("Cannot move item at '\(appURL)' to '\(appTargetURL)', error: \(error.localizedDescription)")
+                showAlert(message: "Cannot correctly setup SSH Connector.", informativeText: error.localizedDescription)
             }
         }
         
@@ -105,7 +104,7 @@ private extension AppDelegate {
         NSAppleScript(source: formattedScript)?.executeAndReturnError(&errorDict)
         
         if let errorDict = errorDict {
-            sendAlert(info: errorDict, url: url)
+            showExecError(info: errorDict, url: url)
         }
     }
     
@@ -120,33 +119,43 @@ private extension AppDelegate {
         return nil
     }
     
-    /// Show error alert to user with ability to send error to authors
-    func sendAlert(info: NSDictionary?, url: ConnectionHelperURL) {
-        let alert = NSAlert()
-        var message = ""
-        
-        alert.alertStyle = .critical
-        alert.messageText = "Application cannot open connection to ssh server \(url.alias). Please send us following error and we try fix it ;)"
+    /// Show error alert for bad AppleScript execution
+    func showExecError(info: NSDictionary?, url: ConnectionHelperURL) {
+        var infoText = ""
         
         if let info = info {
             for key in info.allKeys {
                 if let value = info[key] {
-                    message += "\(key): \(value)\n"
+                    infoText += "\(key): \(value)\n"
                 }
             }
-            alert.informativeText = message
         }
+        
+        showAlert(message: "Application cannot open connection to ssh server \(url.alias). Please send us following error and we try fix it ;)",
+            informativeText: infoText, url: url)
+    }
+    
+    /// Show error alert to user with ability to send error to authors
+    func showAlert(message: String, informativeText: String? = nil, url: ConnectionHelperURL? = nil) {
+        let alert = NSAlert()
+        
+        alert.alertStyle = .critical
+        alert.messageText = message
+        alert.informativeText = informativeText ?? ""
         alert.addButton(withTitle: "Report Error")
         alert.addButton(withTitle: "Close")
         
         if alert.runModal() == NSAlertFirstButtonReturn {
             var mailBody = "Error from SSH Connector\n\n"
             
-            if let terminal = url.terminal {
+            if let terminal = url?.terminal {
                 mailBody += "terminal: \(terminal)\n"
             }
             mailBody += "version: \(Bundle.main.infoDictionary?[kCFBundleVersionKey as String] ?? "")\n"
-            mailBody += "error: \(message)"
+            mailBody += "error: \(message)\n"
+            if let infoText = informativeText {
+                mailBody += "info: \(infoText)"
+            }
             
             if let feedbackURL = URL(string: R.mailto(body: mailBody)) {
                 NSWorkspace.shared().open(feedbackURL)

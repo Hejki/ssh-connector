@@ -18,16 +18,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		26D967541D9EA222009A78CF /* Embed PlugIns */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed PlugIns";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		26D9678D1DA065B8009A78CF /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -125,9 +115,7 @@
 			buildPhases = (
 				26202B7D1D9DA35E00270519 /* Sources */,
 				26202B7E1D9DA35E00270519 /* Frameworks */,
-				26202BB21D9DBD3900270519 /* Build getpass */,
 				26202B7F1D9DA35E00270519 /* Resources */,
-				26D967541D9EA222009A78CF /* Embed PlugIns */,
 				26D9678D1DA065B8009A78CF /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -187,23 +175,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		26202BB21D9DBD3900270519 /* Build getpass */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build getpass";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "#cd getpass\n#swift build -c release\n#cp .build/release/getpass ../Resources\n#codesign --force --verify --verbose --sign \"Developer ID Application: Petr Hejkal (772G83MDGQ)\" ../Resources/getpass";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		26202B7D1D9DA35E00270519 /* Sources */ = {
