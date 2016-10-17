@@ -38,30 +38,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ notification: Notification) {
-        let appURL = NSRunningApplication.current().bundleURL!
-        let fileManager = FileManager.default
-        let appName = NSRunningApplication.current().localizedName ?? "SSH Connector"
-        var appTargetURL = try! fileManager.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        let moveHelper = MoveApplicationHelper()
         
-        appTargetURL.appendPathComponent(appName, isDirectory: true)
-        appTargetURL.appendPathComponent(appName, isDirectory: false)
-        appTargetURL.appendPathExtension("app")
-        
-        if appTargetURL != appURL {
-            do {
-                try fileManager.createDirectory(at: appTargetURL.deletingLastPathComponent(), withIntermediateDirectories: true)
-                
-                if fileManager.fileExists(atPath: appTargetURL.path) {
-                    let _ = try fileManager.replaceItem(at: appTargetURL, withItemAt: appURL, backupItemName: nil, options: [.usingNewMetadataOnly], resultingItemURL: nil)
-                } else {
-                    try fileManager.moveItem(at: appURL, to: appTargetURL)
-                }
-            } catch {
-                showAlert(message: "Cannot correctly setup SSH Connector.", informativeText: error.localizedDescription)
-            }
+        do {
+            try moveHelper.moveApplication()
+        } catch {
+            showAlert(message: "Cannot correctly setup SSH Connector.", informativeText: error.localizedDescription)
         }
         
-        checkLoginItems(appTargetURL)
+        checkLoginItems(moveHelper.targetURL)
     }
     
     /// Handle URL passed to application and open ssh connection

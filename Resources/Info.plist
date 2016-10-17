@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
@@ -47,8 +47,8 @@
 			<key>bundleId</key>
 			<string>com.googlecode.iterm2</string>
 			<key>script</key>
-			<string>tell application id &quot;com.googlecode.iterm2&quot;
-	set c to &quot;%@&quot;
+			<string>tell application id "com.googlecode.iterm2"
+	set c to "%@"
 	
 	if current window is missing value then
 		create window with default profile command c
@@ -74,9 +74,9 @@ end tell</string>
 			<key>bundleId</key>
 			<string>com.apple.Terminal</string>
 			<key>script</key>
-			<string>tell application id &quot;com.apple.Terminal&quot;
+			<string>tell application id "com.apple.Terminal"
 	set windowExist to exists window 1 # starting app or some window opened
-	set command to &quot;%@&quot;
+	set command to "%@"
 	
 	# operation in progres in window 1 or application just started
 	if windowExist and busy of window 1 then

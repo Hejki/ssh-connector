@@ -11,6 +11,7 @@
 		26202B9E1D9DA9E900270519 /* ConnectionHelperURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26202B9C1D9DA9E100270519 /* ConnectionHelperURL.swift */; };
 		26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26202B951D9DA9E100270519 /* Assets.xcassets */; };
 		26202BB51D9DBEEF00270519 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26202B961D9DA9E100270519 /* MainMenu.xib */; };
+		269B2C381DB0161300AE6676 /* MoveApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269B2C371DB0161300AE6676 /* MoveApplicationHelper.swift */; };
 		26C3B3571D9E98B000E8A294 /* connect.sh in Resources */ = {isa = PBXBuildFile; fileRef = 26202B981D9DA9E100270519 /* connect.sh */; };
 		26D9678F1DA069B4009A78CF /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 26D9678E1DA069B4009A78CF /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,7 @@
 		26202B9C1D9DA9E100270519 /* ConnectionHelperURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionHelperURL.swift; sourceTree = "<group>"; };
 		26202B9F1D9DAA9B00270519 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		26202BA01D9DAA9B00270519 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		269B2C371DB0161300AE6676 /* MoveApplicationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveApplicationHelper.swift; sourceTree = "<group>"; };
 		26D9678E1DA069B4009A78CF /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +78,7 @@
 			children = (
 				26202B9B1D9DA9E100270519 /* AppDelegate.swift */,
 				26202B9C1D9DA9E100270519 /* ConnectionHelperURL.swift */,
+				269B2C371DB0161300AE6676 /* MoveApplicationHelper.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				269B2C381DB0161300AE6676 /* MoveApplicationHelper.swift in Sources */,
 				26202B9D1D9DA9E900270519 /* AppDelegate.swift in Sources */,
 				26202B9E1D9DA9E900270519 /* ConnectionHelperURL.swift in Sources */,
 			);
