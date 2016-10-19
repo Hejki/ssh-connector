@@ -100,7 +100,6 @@ private extension AppDelegate {
             let script = config[R.bundleKeyScript] {
             return script
         }
-        
         return nil
     }
     

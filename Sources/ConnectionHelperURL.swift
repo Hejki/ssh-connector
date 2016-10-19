@@ -25,6 +25,8 @@
 import Foundation
 
 class ConnectionHelperURL {
+    static let systemTerminalBundleId = "com.apple.Terminal"
+    
     let alias: String
     let terminal: String?
     let account: String?
@@ -68,7 +70,7 @@ class ConnectionHelperURL {
         
         self.alias = host
         self.account = account
-        self.terminal = terminal
+        self.terminal = terminal ?? ConnectionHelperURL.systemTerminalBundleId
     }
     
     init(alias: String, terminal: String?, account: String?) {
