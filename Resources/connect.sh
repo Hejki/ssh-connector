@@ -6,7 +6,7 @@ set sshAlias [lindex $argv 0]
 set sshAccount [lindex $argv 1]
 
 if {$argc != 2} {
-    send_user "Usage: connect.sh alias account_uuid\n"
+    send_user "Usage: connect.sh host account_uuid\n"
     exit 1
 }
 

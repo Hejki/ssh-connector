@@ -27,22 +27,11 @@ import Foundation
 class ConnectionHelperURL {
     static let systemTerminalBundleId = "com.apple.Terminal"
     
-    let alias: String
+    let host: String
+    let sshComandHost: String
     let terminal: String?
     let account: String?
-    
-    var url: URL {
-        guard var components = URLComponents(string: "sshconnect://\(alias)") else {
-            fatalError("Cannot create URL sshconnect.")
-        }
-        
-        components.queryItems = [
-            URLQueryItem(name: "account", value: account),
-            URLQueryItem(name: "terminal", value: terminal),
-        ]
-        
-        return components.url!
-    }
+    let requiredVersion: Int
     
     init?(url: URL?) {
         guard let url = url, let host = url.host else {
@@ -51,6 +40,7 @@ class ConnectionHelperURL {
         
         var account: String?
         var terminal: String?
+        var reqver: Int?
         
         if let query = url.query {
             let pairs = query.components(separatedBy: "&")
@@ -63,19 +53,32 @@ class ConnectionHelperURL {
                         account = value
                     } else if pair.hasPrefix("terminal") {
                         terminal = value
+                    } else if pair.hasPrefix("reqver") {
+                        reqver = Int(value)
                     }
                 }
             }
         }
         
-        self.alias = host
+        var targetHost = ""
+        var sshCommand = ""
+        
+        if let user = url.user {
+            targetHost += "\(user)@"
+        }
+        
+        targetHost += host
+        sshCommand = targetHost
+        
+        if let port = url.port {
+            targetHost += ":\(port)"
+            sshCommand += " -p \(port)"
+        }
+        
+        self.host = targetHost
+        self.sshComandHost = sshCommand
         self.account = account
-        self.terminal = terminal ?? ConnectionHelperURL.systemTerminalBundleId
-    }
-    
-    init(alias: String, terminal: String?, account: String?) {
-        self.alias = alias
         self.terminal = terminal
-        self.account = account
+        self.requiredVersion = reqver ?? 0
     }
 }

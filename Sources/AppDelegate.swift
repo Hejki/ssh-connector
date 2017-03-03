@@ -68,7 +68,7 @@ private extension AppDelegate {
         // If apple script not found then call ssh url
         guard let script = getScript(forBundleId: url.terminal) else {
             
-            if let sshURL = URL(string: "ssh://\(url.alias)") {
+            if let sshURL = URL(string: "ssh://\(url.host)") {
                 if let terminalBundleIdentifier = url.terminal {
                     NSWorkspace.shared().open([sshURL], withAppBundleIdentifier: terminalBundleIdentifier, options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
                 } else {
@@ -80,9 +80,9 @@ private extension AppDelegate {
         
         let formattedScript: String
         if let account = url.account {
-            formattedScript = String(format: script, "\\\"\(connectScriptPath)\\\" \(url.alias) \(account)")
+            formattedScript = String(format: script, "\\\"\(connectScriptPath)\\\" \(url.sshComandHost) \(account)")
         } else {
-            formattedScript = String(format: script, "ssh \(url.alias)")
+            formattedScript = String(format: script, "ssh \(url.sshComandHost)")
         }
         
         var errorDict: NSDictionary?
@@ -115,7 +115,7 @@ private extension AppDelegate {
             }
         }
         
-        showAlert(message: "Application cannot open connection to ssh server \(url.alias). Please send us following error and we try fix it ;)",
+        showAlert(message: "Application cannot open connection to ssh server \(url.host). Please send us following error and we try fix it ;)",
             informativeText: infoText, url: url)
     }
     
