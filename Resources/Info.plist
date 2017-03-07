@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.5</string>
+	<string>1.1</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>7</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
@@ -47,8 +47,8 @@
 			<key>bundleId</key>
 			<string>com.googlecode.iterm2</string>
 			<key>script</key>
-			<string>tell application id "com.googlecode.iterm2"
-	set c to "%@"
+			<string>tell application id &quot;com.googlecode.iterm2&quot;
+	set c to &quot; %@&quot;
 	
 	if current window is missing value then
 		create window with default profile command c
@@ -74,40 +74,8 @@ end tell</string>
 			<key>bundleId</key>
 			<string>com.apple.Terminal</string>
 			<key>script</key>
-			<string>tell application id "com.apple.Terminal"
-	set windowExist to exists window 1 # starting app or some window opened
-	set command to "%@"
-	
-	# operation in progres in window 1 or application just started
-	if windowExist and busy of window 1 then
-		delay 2
-		if busy of window 1 then
-			do script command
-			activate
-			return
-		end if
-	end if
-	
-	if windowExist and not busy of window 1 then
-		do script command in window 1
-	else
-		do script command
-	end if
-	activate
-end tell</string>
+			<string>tell application id &quot;com.apple.Terminal&quot;	set windowExist to exists window 1 # starting app or some window opened	set command to &quot; %@&quot;		# operation in progres in window 1 or application just started	if windowExist and busy of window 1 then		activate		tell application &quot;System Events&quot; to keystroke &quot;t&quot; using {command down}		delay 0.2		do script command in selected tab of the front window		return	end if		if windowExist and not busy of window 1 then		do script command in selected tab of the front window	else		do script command	end if	activateend tell</string>
 		</dict>
 	</array>
-	<key>SUAllowsAutomaticUpdates</key>
-	<true/>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUFeedURL</key>
-	<string>https://www.dropbox.com/s/el432iuc6cj5r3g/versions.xml?dl=1</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
-	<key>SUScheduledCheckInterval</key>
-	<integer>86400</integer>
-	<key>SUShowReleaseNotes</key>
-	<false/>
 </dict>
 </plist>

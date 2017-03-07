@@ -13,7 +13,6 @@
 		26202BB51D9DBEEF00270519 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26202B961D9DA9E100270519 /* MainMenu.xib */; };
 		269B2C381DB0161300AE6676 /* MoveApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269B2C371DB0161300AE6676 /* MoveApplicationHelper.swift */; };
 		26C3B3571D9E98B000E8A294 /* connect.sh in Resources */ = {isa = PBXBuildFile; fileRef = 26202B981D9DA9E100270519 /* connect.sh */; };
-		26D9678F1DA069B4009A78CF /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 26D9678E1DA069B4009A78CF /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +26,6 @@
 		26202B9F1D9DAA9B00270519 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		26202BA01D9DAA9B00270519 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		269B2C371DB0161300AE6676 /* MoveApplicationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveApplicationHelper.swift; sourceTree = "<group>"; };
-		26D9678E1DA069B4009A78CF /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 				26202B961D9DA9E100270519 /* MainMenu.xib */,
 				26202B981D9DA9E100270519 /* connect.sh */,
 				26202B991D9DA9E100270519 /* Info.plist */,
-				26D9678E1DA069B4009A78CF /* dsa_pub.pem */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -117,7 +114,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Hejki;
 				TargetAttributes = {
 					26202B801D9DA35E00270519 = {
@@ -151,7 +148,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */,
-				26D9678F1DA069B4009A78CF /* dsa_pub.pem in Resources */,
 				26C3B3571D9E98B000E8A294 /* connect.sh in Resources */,
 				26202BB51D9DBEEF00270519 /* MainMenu.xib in Resources */,
 			);
@@ -202,6 +198,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -251,6 +248,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
