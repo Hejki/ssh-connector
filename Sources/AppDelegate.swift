@@ -80,7 +80,7 @@ private extension AppDelegate {
         
         let formattedScript: String
         if let account = url.account {
-            formattedScript = String(format: script, "\\\"\(connectScriptPath)\\\" \(url.sshComandHost) \(account)")
+            formattedScript = String(format: script, "\\\"\(connectScriptPath)\\\" \\\"\(url.sshComandHost)\\\" \(account)")
         } else {
             formattedScript = String(format: script, "ssh \(url.sshComandHost)")
         }
