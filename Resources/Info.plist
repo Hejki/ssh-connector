@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2</string>
+	<string>1.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>9</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
@@ -47,34 +47,32 @@
 			<key>bundleId</key>
 			<string>com.googlecode.iterm2</string>
 			<key>script</key>
-			<string>tell application id "com.googlecode.iterm2"
-	set c to " %@"
-	
-	if current window is missing value then
-		create window with default profile command c
-		activate
-		return
-	end if
-	
-	tell current session of current window
-		if is processing then
-			write text c
-			activate
-			return
-		end if
-	end tell
-	
-	tell current window
-		create tab with default profile command c
-	end tell
-	activate
-end tell</string>
+			<string>tell application id "com.googlecode.iterm2"	set c to " %@"		try		set iterm to current window				tell current session of iterm			if is processing then				write text c			else				tell iterm to create tab with default profile command c			end if		end tell	on error		create window with default profile command c	end try		activateend tell</string>
 		</dict>
 		<dict>
 			<key>bundleId</key>
 			<string>com.apple.Terminal</string>
 			<key>script</key>
-			<string>tell application id "com.apple.Terminal"	set windowExist to exists window 1 # starting app or some window opened	set command to " %@"		# operation in progres in window 1 or application just started	if windowExist and busy of window 1 then		activate		tell application "System Events" to keystroke "t" using {command down}		delay 0.2		do script command in selected tab of the front window		return	end if		if windowExist and not busy of window 1 then		do script command in selected tab of the front window	else		do script command	end if	activateend tell</string>
+			<string>tell application id "com.apple.Terminal"
+	set windowExist to exists window 1 # starting app or some window opened
+	set command to " %@"
+	
+	# operation in progres in window 1 or application just started
+	if windowExist and busy of window 1 then
+		activate
+		tell application "System Events" to keystroke "t" using {command down}
+		delay 0.2
+		do script command in selected tab of the front window
+		return
+	end if
+	
+	if windowExist and not busy of window 1 then
+		do script command in selected tab of the front window
+	else
+		do script command
+	end if
+	activate
+end tell</string>
 		</dict>
 	</array>
 </dict>
