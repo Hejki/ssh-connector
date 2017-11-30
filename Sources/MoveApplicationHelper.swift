@@ -15,7 +15,7 @@ class MoveApplicationHelper {
     let targetURL: URL
     
     init() {
-        let appName = NSRunningApplication.current().localizedName ?? "SSH Connector"
+        let appName = NSRunningApplication.current.localizedName ?? "SSH Connector"
         var appTargetURL = try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
         
         appTargetURL.appendPathComponent(appName, isDirectory: true)
@@ -61,7 +61,7 @@ private extension MoveApplicationHelper {
     /// Terminate all running application isntances other than current.
     /// If deleteApp is true then instance application will be deleted
     func exterminateOthers() {
-        let currentInstance = NSRunningApplication.current()
+        let currentInstance = NSRunningApplication.current
         let otherConnectors = NSRunningApplication.runningApplications(withBundleIdentifier: Bundle.main.bundleIdentifier!).filter({ $0 != currentInstance })
         
         for connectorInstance in otherConnectors {
@@ -116,8 +116,8 @@ private extension MoveApplicationHelper {
         
         let data = output.fileHandleForReading.readDataToEndOfFile()
         if let outputText = String(data: data, encoding: .utf8),
-            let pathIndex = outputText.characters.index(of: "/") {
-            return outputText.substring(from: pathIndex).trimmingCharacters(in: .whitespacesAndNewlines)
+            let pathIndex = outputText.index(of: "/") {
+            return outputText[pathIndex...].trimmingCharacters(in: .whitespacesAndNewlines)
         }
         return bundleURL.path
     }

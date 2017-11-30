@@ -47,12 +47,12 @@ class ConnectionHelperURL {
             
             for pair in pairs {
                 if let indexOfValue = pair.range(of: "=")?.upperBound {
-                    let value = pair.substring(from: indexOfValue)
+                    let value = pair[indexOfValue...]
                     
                     if pair.hasPrefix("account") {
-                        account = value
+                        account = String(value)
                     } else if pair.hasPrefix("terminal") {
-                        terminal = value
+                        terminal = String(value)
                     } else if pair.hasPrefix("reqver") {
                         reqver = Int(value)
                     }

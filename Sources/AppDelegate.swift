@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     /// Handle URL passed to application and open ssh connection
-    func handleAppleEvent(_ event: NSAppleEventDescriptor?, withReplyEvent replyEvent: NSAppleEventDescriptor?) {
+    @objc func handleAppleEvent(_ event: NSAppleEventDescriptor?, withReplyEvent replyEvent: NSAppleEventDescriptor?) {
         if let eventDescriptor = event?.paramDescriptor(forKeyword: AEKeyword(keyDirectObject)),
             let urlString = eventDescriptor.stringValue,
             let url = ConnectionHelperURL(url: URL(string: urlString)) {
@@ -70,9 +70,9 @@ private extension AppDelegate {
             
             if let sshURL = URL(string: "ssh://\(url.host)") {
                 if let terminalBundleIdentifier = url.terminal {
-                    NSWorkspace.shared().open([sshURL], withAppBundleIdentifier: terminalBundleIdentifier, options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+                    NSWorkspace.shared.open([sshURL], withAppBundleIdentifier: terminalBundleIdentifier, options: [], additionalEventParamDescriptor: nil, launchIdentifiers: nil)
                 } else {
-                    NSWorkspace.shared().open(sshURL)
+                    NSWorkspace.shared.open(sshURL)
                 }
             }
             return
@@ -129,7 +129,7 @@ private extension AppDelegate {
         alert.addButton(withTitle: "Report Error")
         alert.addButton(withTitle: "Close")
         
-        if alert.runModal() == NSAlertFirstButtonReturn {
+        if alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn {
             var mailBody = "Error from SSH Connector\n\n"
             
             if let terminal = url?.terminal {
@@ -142,7 +142,7 @@ private extension AppDelegate {
             }
             
             if let feedbackURL = URL(string: R.mailto(body: mailBody)) {
-                NSWorkspace.shared().open(feedbackURL)
+                NSWorkspace.shared.open(feedbackURL)
             }
         }
     }

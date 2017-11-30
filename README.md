@@ -4,5 +4,5 @@ Helper macOS application to create connections to ssh hosts with password auto f
 ### Deploy package
 
 * Archive through XCode
-* Export as Developer signet app
+* Export as Developer signed app
 * Compress `ditto -c -k --sequesterRsrc --keepParent SSH\ Connector.app SSH\ Connector.app.zip`

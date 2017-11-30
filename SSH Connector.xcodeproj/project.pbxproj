@@ -9,15 +9,14 @@
 /* Begin PBXBuildFile section */
 		26202B9D1D9DA9E900270519 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26202B9B1D9DA9E100270519 /* AppDelegate.swift */; };
 		26202B9E1D9DA9E900270519 /* ConnectionHelperURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26202B9C1D9DA9E100270519 /* ConnectionHelperURL.swift */; };
-		26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26202B951D9DA9E100270519 /* Assets.xcassets */; };
 		26202BB51D9DBEEF00270519 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 26202B961D9DA9E100270519 /* MainMenu.xib */; };
 		269B2C381DB0161300AE6676 /* MoveApplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269B2C371DB0161300AE6676 /* MoveApplicationHelper.swift */; };
+		26C03AD51FD0A091007E4842 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 26C03AD41FD0A091007E4842 /* AppIcon.icns */; };
 		26C3B3571D9E98B000E8A294 /* connect.sh in Resources */ = {isa = PBXBuildFile; fileRef = 26202B981D9DA9E100270519 /* connect.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		26202B811D9DA35E00270519 /* SSH Connector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SSH Connector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		26202B951D9DA9E100270519 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26202B971D9DA9E100270519 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		26202B981D9DA9E100270519 /* connect.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = connect.sh; sourceTree = "<group>"; };
 		26202B991D9DA9E100270519 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -26,6 +25,7 @@
 		26202B9F1D9DAA9B00270519 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		26202BA01D9DAA9B00270519 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		269B2C371DB0161300AE6676 /* MoveApplicationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoveApplicationHelper.swift; sourceTree = "<group>"; };
+		26C03AD41FD0A091007E4842 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 		26202B941D9DA9E100270519 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				26202B951D9DA9E100270519 /* Assets.xcassets */,
+				26C03AD41FD0A091007E4842 /* AppIcon.icns */,
 				26202B961D9DA9E100270519 /* MainMenu.xib */,
 				26202B981D9DA9E100270519 /* connect.sh */,
 				26202B991D9DA9E100270519 /* Info.plist */,
@@ -114,12 +114,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = Hejki;
 				TargetAttributes = {
 					26202B801D9DA35E00270519 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 772G83MDGQ;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -147,7 +148,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26202BA21D9DAAFD00270519 /* Assets.xcassets in Resources */,
+				26C03AD51FD0A091007E4842 /* AppIcon.icns in Resources */,
 				26C3B3571D9E98B000E8A294 /* connect.sh in Resources */,
 				26202BB51D9DBEEF00270519 /* MainMenu.xib in Resources */,
 			);
@@ -189,7 +190,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -197,7 +200,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -239,7 +246,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -247,7 +256,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -275,7 +288,7 @@
 		26202B8F1D9DA35F00270519 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 772G83MDGQ;
@@ -288,14 +301,14 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = org.hejki.osx.sshce.connector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		26202B901D9DA35F00270519 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = space;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 772G83MDGQ;
@@ -303,12 +316,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
+				GCC_OPTIMIZATION_LEVEL = s;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = org.hejki.osx.sshce.connector;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
